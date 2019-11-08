@@ -7,5 +7,3 @@ sys.path.append("..")
 import d2lzh_pytorch as d2l
 
 print(torch.__version__)
-
-print()

@@ -2,7 +2,7 @@ import torch
 import numpy as np
 import sys
 sys.path.append("..")
-import d2lzh_pytorch as d2l
+from code import d2lzh_pytorch as d2l
 
 print(torch.__version__)
 

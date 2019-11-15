@@ -63,3 +63,5 @@ net2 = MLP()
 net2.load_state_dict(torch.load(PATH))
 Y2 = net2(X)
 print(Y == Y2)
+
+# test

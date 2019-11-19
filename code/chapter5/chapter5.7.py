@@ -65,27 +65,23 @@ def vgg(conv_arch, fc_features, fc_hidden_units=4096):
 
 net = vgg(conv_arch, fc_features, fc_hidden_units)
 X = torch.rand(1, 1, 224, 224)
-summary(net, (1, 224, 224))
 # named_children获取一级子模块及其名字(named_modules会返回所有子模块,包括子模块的子模块)
 for name, blk in net.named_children():
     X = blk(X)
     print(name, 'output shape: ', X.shape)
-
 ratio = 8
 small_conv_arch = [(1, 1, 64//ratio), (1, 64//ratio, 128//ratio), (2, 128//ratio, 256//ratio),
                    (2, 256//ratio, 512//ratio), (2, 512//ratio, 512//ratio)]
 net = vgg(small_conv_arch, fc_features // ratio, fc_hidden_units // ratio)
 print(net)
 
+batch_size = 64
+# 如出现“out of memory”的报错信息，可减小batch_size或resize
+train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size, resize=224)
 
-if __name__ == '__main__':
-    batch_size = 64
-    # 如出现“out of memory”的报错信息，可减小batch_size或resize
-    train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size, resize=224)
-
-    lr, num_epochs = 0.001, 5
-    optimizer = torch.optim.Adam(net.parameters(), lr=lr)
-    d2l.train_ch5(net, train_iter, test_iter, batch_size, optimizer, device, num_epochs)
+lr, num_epochs = 0.001, 5
+optimizer = torch.optim.Adam(net.parameters(), lr=lr)
+d2l.train_ch5(net, train_iter, test_iter, batch_size, optimizer, device, num_epochs)
 
 
 

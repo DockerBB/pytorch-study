@@ -579,6 +579,8 @@ def show_trace_2d(f, results):
     plt.contour(x1, x2, f(x1, x2), colors='#1f77b4')
     plt.xlabel('x1')
     plt.ylabel('x2')
+    plt.show()
+
 
 
 

@@ -1,4 +1,7 @@
 ##ignore files##
 /d2lzh_pytorch/__pycache__/
 .idea/
-/d2lzh_pytorch/code/chapter9/Dataset/
+/code/chapter9/Dataset/
+/code/chapter9/mnist/
+/code/chapter9/runs/
+/code/chapter9/*.json
